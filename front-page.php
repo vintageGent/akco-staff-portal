@@ -14,7 +14,11 @@ get_header(); ?>
 
             <article class="page type-page status-publish hentry">
                 <header class="entry-header">
-                    <h1 class="entry-title">Welcome, Staff Member</h1>
+                    <?php
+                    $current_user = wp_get_current_user();
+                    $display_name = $current_user->display_name;
+                    ?>
+                    <h1 class="entry-title">Welcome, <?php echo esc_html( $display_name ); ?></h1>
                 </header><!-- .entry-header -->
 
                 <div class="entry-content">
