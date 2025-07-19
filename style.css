@@ -6,3 +6,170 @@ Author URI: https://github.com/vintageGent
 Description: A custom theme for the AKCO staff portal.
 Version: 1.0
 */
+
+/* General Body and Background Styling */
+body {
+    background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif; /* A common sans-serif font */
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Overlay for background image */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    z-index: -1; /* Place behind content */
+}
+
+/* Main Content Area Styling */
+#primary {
+    flex-grow: 1;
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#main {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background for content */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 600px; /* Limit width for readability */
+    width: 100%;
+    text-align: center;
+}
+
+/* Header and Footer Styling */
+#masthead, #colophon {
+    background-color: rgba(255, 255, 255, 0.95); /* Near-white background for header/footer */
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Ensure they are above the background */
+}
+
+#masthead {
+    margin-bottom: 20px;
+}
+
+#colophon {
+    margin-top: 20px;
+}
+
+/* Site Title and Navigation */
+.site-branding .site-title a {
+    color: #007bff; /* Accent color for site title */
+    text-decoration: none;
+    font-size: 2em;
+}
+
+.main-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.main-navigation li {
+    margin: 0 15px;
+}
+
+.main-navigation a {
+    color: #333333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-navigation a:hover {
+    color: #007bff;
+}
+
+/* Ultimate Member Form Styling (General) */
+.um .um-form {
+    padding: 0; /* Remove default UM padding if any */
+    box-shadow: none; /* Remove default UM shadow if any */
+    background: none; /* Remove default UM background if any */
+}
+
+.um .um-field-label label {
+    color: #333333;
+    font-weight: bold;
+}
+
+.um .um-field-text input, .um .um-field-password input {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: calc(100% - 22px); /* Account for padding and border */
+    margin-bottom: 15px;
+}
+
+.um .um-button {
+    background-color: #007bff; /* Accent color for buttons */
+    color: #ffffff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.um .um-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.um .um-col-alt a {
+    color: #007bff; /* Accent color for links like 'Forgot Password' */
+    text-decoration: none;
+}
+
+.um .um-col-alt a:hover {
+    text-decoration: underline;
+}
+
+/* Specific styling for the welcome message */
+.entry-title {
+    color: #007bff;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.entry-content {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.entry-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.entry-content li {
+    margin-bottom: 10px;
+}
+
+.entry-content a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.entry-content a:hover {
+    text-decoration: underline;
+}
