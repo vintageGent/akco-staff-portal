@@ -27,7 +27,7 @@ get_header(); // Include header.php ?>
                 $current_user = wp_get_current_user();
                 $display_name = $current_user->display_name;
                 ?>
-                <h1 class="entry-title">Welcome, <?php echo esc_html( $display_name ); ?></h1>
+                <h1 class="entry-title">Welcome AKCO Staff</h1>
                 <p>Ready to change the world!</p>
                 <div class="entry-content">
                     <ul>
