@@ -9,178 +9,181 @@ Version: 1.0
 
 /* General Body and Background Styling */
 body {
-    background-image: url('https://images.pexels.com/photos/6214361/pexels-photo-6214361.jpeg');
+    background-color: #1A2421; /* Dark Jungle Green */
+    background-image: url('https://images.pexels.com/photos/4862923/pexels-photo-4862923.jpeg');
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-    font-family: 'Lato', sans-serif; /* Using Lato as per AKCO's CSS */
-    color: #777; /* General text color from AKCO's CSS */
+    background-blend-mode: multiply; /* Blend the green with the texture */
+    font-family: 'Lato', sans-serif;
+    color: #eee; /* Light text for dark background */
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Ensure body takes full viewport height */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* Hide scrollbars for full-screen effect */
 }
 
-/* Overlay for background image */
+/* No overlay needed as background-blend-mode handles it */
 body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay for better contrast */
-    z-index: -1; /* Place behind content */
+    content: none; /* Remove previous overlay */
 }
 
-/* Main Content Area Styling (The "Premium Card") */
+/* Hide default WordPress admin bar for full-screen */
+html {
+    margin-top: 0 !important;
+}
+#wpadminbar {
+    display: none !important;
+}
+
+/* Main Content Area - Flex container for card and popup */
 #primary {
     flex-grow: 1;
     display: flex;
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
+    align-items: center;
+    justify-content: center;
     padding: 20px;
     box-sizing: border-box;
+    position: relative; /* For positioning children */
 }
 
-#main {
-    background-color: rgba(255, 255, 255, 0.7); /* More transparent white background for content */
-    padding: 40px;
-    border-radius: 16px; /* More rounded corners for premium card look */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
-    max-width: 600px; /* Limit width for readability */
-    width: 100%;
+/* AKCO Express Card (Central) */
+.akco-express-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle transparency */
+    border-radius: 20px;
+    padding: 30px;
     text-align: center;
-    position: relative; /* For potential absolute positioning of elements */
-}
-
-/* Header and Footer Styling */
-#masthead, #colophon {
-    background-color: rgba(255, 255, 255, 0.98); /* Near-white background for header/footer */
-    padding: 15px 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
-    z-index: 10; /* Ensure they are above the background */
-}
-
-#masthead {
-    margin-bottom: 20px;
-}
-
-#colophon {
-    margin-top: 20px;
-}
-
-/* Site Title and Navigation */
-.site-branding .site-title a {
-    color: #30b570; /* AKCO Green for site title */
-    text-decoration: none;
-    font-size: 2.2em; /* Slightly larger */
-    font-weight: bold;
-}
-
-.main-navigation ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    box-shadow: 0 0 30px rgba(48, 181, 112, 0.5); /* Green glow */
+    width: 300px; /* Fixed size for card */
+    height: 200px; /* Fixed size for card */
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    color: #fff;
+    z-index: 2; /* Ensure it's above background */
 }
 
-.main-navigation li {
-    margin: 0 18px; /* Slightly more spacing */
+.akco-express-card img {
+    max-width: 100px; /* Adjust logo size */
+    height: auto;
+    margin-bottom: 15px;
 }
 
-.main-navigation a {
-    color: #777; /* General text color */
-    text-decoration: none;
-    font-weight: 600; /* Slightly bolder */
-    transition: color 0.3s ease;
+.akco-express-card p {
+    margin: 5px 0;
+    font-size: 0.9em;
 }
 
-.main-navigation a:hover {
-    color: #30b570; /* AKCO Green on hover */
+/* AKCO Content Pop-up (Left-aligned) */
+.akco-content-popup {
+    position: absolute;
+    top: 50%;
+    left: 5%; /* 5% from the left edge */
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly more transparent */
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(48, 181, 112, 0.3); /* Green glow */
+    color: #fff;
+    z-index: 3; /* Ensure it's above the card if they overlap */
+    text-align: left; /* Align text within popup */
 }
 
-/* Ultimate Member Form Styling (General) */
-.um .um-form {
-    padding: 0; /* Remove default UM padding if any */
-    box-shadow: none; /* Remove default UM shadow if any */
-    background: none; /* Remove default UM background if any */
-}
-
-.um .um-field-label label {
-    color: #777; /* General text color */
-    font-weight: bold;
-}
-
-.um .um-field-text input, .um .um-field-password input {
-    border: 1px solid #ccc;
-    padding: 12px; /* Slightly more padding */
-    border-radius: 8px; /* More rounded */
-    width: calc(100% - 26px); /* Account for padding and border */
-    margin-bottom: 18px; /* Slightly more margin */
-    font-size: 1em;
-}
-
-.um .um-button {
-    background-color: #30b570; /* AKCO Green for buttons */
-    color: #ffffff;
-    padding: 14px 30px; /* Larger buttons */
-    border: none;
-    border-radius: 8px; /* More rounded */
-    cursor: pointer;
-    font-size: 1.2em; /* Larger font */
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.um .um-button:hover {
-    background-color: #289a5e; /* Darker green on hover */
-}
-
-.um .um-col-alt a {
-    color: #30b570; /* AKCO Green for links like 'Forgot Password' */
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.um .um-col-alt a:hover {
-    text-decoration: underline;
-}
-
-/* Specific styling for the welcome message */
-.entry-title {
+.akco-content-popup .entry-title {
     color: #30b570; /* AKCO Green for welcome title */
-    font-size: 2.8em; /* Larger title */
-    margin-bottom: 25px;
+    font-size: 2.5em;
+    margin-bottom: 15px;
     font-weight: bold;
+    text-shadow: 0 0 5px rgba(48, 181, 112, 0.5); /* Subtle glow for title */
 }
 
-.entry-content {
-    font-size: 1.15em; /* Slightly larger text */
-    line-height: 1.7;
-    color: #555; /* Slightly darker text for content */
+.akco-content-popup .entry-content {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #eee; /* Light text for content */
 }
 
-.entry-content ul {
+.akco-content-popup .entry-content ul {
     list-style: none;
     padding: 0;
     margin-top: 20px;
 }
 
-.entry-content li {
-    margin-bottom: 12px;
+.akco-content-popup .entry-content li {
+    margin-bottom: 10px;
 }
 
-.entry-content a {
+.akco-content-popup .entry-content a {
     color: #30b570; /* AKCO Green for links */
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
-.entry-content a:hover {
+.akco-content-popup .entry-content a:hover {
     text-decoration: underline;
-    color: #289a5e;
+    color: #289a5e; /* Darker green on hover */
+}
+
+/* Ultimate Member Form Styling (within popup) */
+.akco-content-popup .um .um-form {
+    padding: 0;
+    box-shadow: none;
+    background: none;
+}
+
+.akco-content-popup .um .um-field-label label {
+    color: #eee; /* Light text for labels */
+    font-weight: bold;
+}
+
+.akco-content-popup .um .um-field-text input,
+.akco-content-popup .um .um-field-password input {
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent input background */
+    color: #fff; /* White text in input */
+    padding: 12px;
+    border-radius: 8px;
+    width: calc(100% - 26px);
+    margin-bottom: 18px;
+    font-size: 1em;
+}
+
+.akco-content-popup .um .um-button {
+    background-color: #30b570; /* AKCO Green for buttons */
+    color: #ffffff;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.akco-content-popup .um .um-button:hover {
+    background-color: #289a5e; /* Darker green on hover */
+}
+
+.akco-content-popup .um .um-col-alt a {
+    color: #30b570; /* AKCO Green for links */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.akco-content-popup .um .um-col-alt a:hover {
+    text-decoration: underline;
+}
+
+/* Hide default header and footer */
+#masthead, #colophon, #site-navigation, .site-branding {
+    display: none !important;
 }
