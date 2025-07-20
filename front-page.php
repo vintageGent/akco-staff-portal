@@ -11,7 +11,7 @@ get_header(); // Include header.php ?>
 
     <div class="akco-content-popup">
         <?php if ( is_user_logged_in() ) : ?>
-            <h1 class="entry-title">Welcome AKCO Staff</h1>
+            <h1 class="entry-title">Welcome AKCO Volunteers</h1>
             <p>Ready to change the world!</p>
             <div class="entry-content">
                 <ul>
@@ -23,7 +23,7 @@ get_header(); // Include header.php ?>
                 </ul>
             </div>
         <?php else : ?>
-            <h1 class="entry-title">Welcome AKCO Staff</h1>
+            <h1 class="entry-title">Welcome AKCO Volunteers</h1>
             <p>Ready to change the world!</p>
             <div class="entry-content">
                 <p>Login to your departments:</p>
