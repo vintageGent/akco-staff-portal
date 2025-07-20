@@ -19,6 +19,10 @@ get_header(); ?>
                     $display_name = $current_user->display_name;
                     ?>
                     <h1 class="entry-title">Welcome, <?php echo esc_html( $display_name ); ?></h1>
+                    <div class="akco-card-details">
+                        <p class="akco-label">AKCO Premium Card</p>
+                        <p class="akco-location">Location: Kairi shopping center Kiambu</p>
+                    </div>
                 </header><!-- .entry-header -->
 
                 <div class="entry-content">
