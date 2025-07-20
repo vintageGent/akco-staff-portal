@@ -7,14 +7,32 @@ Description: A custom theme for the AKCO staff portal.
 Version: 1.0
 */
 
-/* General Body and Background Styling */
-body {
+/* Hide default WordPress admin bar for full-screen */
+html {
+    margin-top: 0 !important;
+}
+#wpadminbar {
+    display: none !important;
+}
+
+/* Full Screen Background Container */
+.full-screen-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: #1A2421; /* Dark Jungle Green */
     background-image: url('https://images.pexels.com/photos/4862923/pexels-photo-4862923.jpeg');
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
     background-blend-mode: multiply; /* Blend the green with the texture */
+    z-index: -2; /* Ensure it's behind everything */
+}
+
+/* General Body Styling */
+body {
     font-family: 'Lato', sans-serif;
     color: #eee; /* Light text for dark background */
     margin: 0;
@@ -23,19 +41,8 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden; /* Hide scrollbars for full-screen effect */
-}
-
-/* No overlay needed as background-blend-mode handles it */
-body::before {
-    content: none; /* Remove previous overlay */
-}
-
-/* Hide default WordPress admin bar for full-screen */
-html {
-    margin-top: 0 !important;
-}
-#wpadminbar {
-    display: none !important;
+    position: relative; /* For positioning children */
+    z-index: -1; /* Ensure body content is above background */
 }
 
 /* Main Content Area - Flex container for card and popup */
@@ -47,6 +54,8 @@ html {
     padding: 20px;
     box-sizing: border-box;
     position: relative; /* For positioning children */
+    width: 100%;
+    height: 100vh; /* Take full viewport height */
 }
 
 /* AKCO Express Card (Central) */
@@ -55,11 +64,11 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle transparency */
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly more visible transparency */
     border-radius: 20px;
     padding: 30px;
     text-align: center;
-    box-shadow: 0 0 30px rgba(48, 181, 112, 0.5); /* Green glow */
+    box-shadow: 0 0 40px rgba(48, 181, 112, 0.7); /* Stronger green glow */
     width: 300px; /* Fixed size for card */
     height: 200px; /* Fixed size for card */
     display: flex;
@@ -68,6 +77,7 @@ html {
     align-items: center;
     color: #fff;
     z-index: 2; /* Ensure it's above background */
+    border: 1px solid rgba(48, 181, 112, 0.5); /* Subtle green border */
 }
 
 .akco-express-card img {
@@ -87,27 +97,28 @@ html {
     top: 50%;
     left: 5%; /* 5% from the left edge */
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.15); /* Slightly more transparent */
-    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.25); /* More visible transparency for pop-up */
+    padding: 35px; /* Slightly more padding */
     border-radius: 15px;
-    max-width: 400px;
-    box-shadow: 0 0 20px rgba(48, 181, 112, 0.3); /* Green glow */
+    max-width: 450px; /* Slightly wider */
+    box-shadow: 0 0 30px rgba(48, 181, 112, 0.5); /* Stronger green glow */
     color: #fff;
     z-index: 3; /* Ensure it's above the card if they overlap */
     text-align: left; /* Align text within popup */
+    border: 1px solid rgba(48, 181, 112, 0.7); /* More prominent green border */
 }
 
 .akco-content-popup .entry-title {
     color: #30b570; /* AKCO Green for welcome title */
-    font-size: 2.5em;
+    font-size: 2.8em; /* Larger title */
     margin-bottom: 15px;
     font-weight: bold;
-    text-shadow: 0 0 5px rgba(48, 181, 112, 0.5); /* Subtle glow for title */
+    text-shadow: 0 0 8px rgba(48, 181, 112, 0.8); /* Stronger glow for title */
 }
 
 .akco-content-popup .entry-content {
-    font-size: 1.1em;
-    line-height: 1.6;
+    font-size: 1.15em; /* Slightly larger text */
+    line-height: 1.7;
     color: #eee; /* Light text for content */
 }
 
@@ -147,8 +158,8 @@ html {
 
 .akco-content-popup .um .um-field-text input,
 .akco-content-popup .um .um-field-password input {
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
-    background-color: rgba(255, 255, 255, 0.1); /* Transparent input background */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Lighter border */
+    background-color: rgba(255, 255, 255, 0.2); /* Transparent input background */
     color: #fff; /* White text in input */
     padding: 12px;
     border-radius: 8px;
@@ -181,6 +192,7 @@ html {
 
 .akco-content-popup .um .um-col-alt a:hover {
     text-decoration: underline;
+    color: #289a5e;
 }
 
 /* Hide default header and footer */
