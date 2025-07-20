@@ -45,6 +45,7 @@ get_header(); ?>
 
                 <div class="entry-content">
                     <p>Please log in to access the AKCO Staff Portal.</p>
+                    <p>Login to your departments:</p>
                     <?php echo do_shortcode( '[ultimatemember_login]' ); ?>
                 </div><!-- .entry-content -->
             </article>

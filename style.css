@@ -45,7 +45,7 @@ body::before {
 }
 
 #main {
-    background-color: rgba(255, 255, 255, 0.95); /* Near-white background for content */
+    background-color: rgba(255, 255, 255, 0.7); /* More transparent white background for content */
     padding: 40px;
     border-radius: 16px; /* More rounded corners for premium card look */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
