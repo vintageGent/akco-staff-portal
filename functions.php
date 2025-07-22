@@ -76,6 +76,7 @@ add_action( 'after_setup_theme', 'akco_staff_portal_setup' );
  */
 function akco_staff_portal_scripts() {
 	wp_enqueue_style( 'akco-staff-portal-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'akco-staff-portal-dashboard-style', get_template_directory_uri() . '/dashboard-style.css' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

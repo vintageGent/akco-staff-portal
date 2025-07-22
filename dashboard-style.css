@@ -1,0 +1,26 @@
+/*
+ * Styles for the logged-in user dashboard.
+ */
+
+.dashboard {
+    background-color: #f0f2f5;
+    padding: 2rem;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.widget {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -11,17 +11,11 @@ get_header(); // Include header.php ?>
 
     <div class="akco-content-popup">
         <?php if ( is_user_logged_in() ) : ?>
-            <h1 class="entry-title">Welcome AKCO Volunteers</h1>
-            <p>Ready to change the world!</p>
-            <div class="entry-content">
-                <ul>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Logout</a></li>
-                    <li><a href="#">View Leave Balance</a></li>
-                    <li><a href="#">Download Payslip</a></li>
-                    <li><a href="#">Organization Announcements</a></li>
-                </ul>
-            </div>
+            <?php
+                // Redirect to the dashboard.
+                wp_redirect( home_url( '/dashboard.php' ) );
+                exit;
+            ?>
         <?php else : ?>
             <h1 class="entry-title">Welcome AKCO Volunteers</h1>
             <p>Ready to change the world!</p>
