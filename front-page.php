@@ -13,7 +13,7 @@ get_header(); // Include header.php ?>
         <?php if ( is_user_logged_in() ) : ?>
             <?php
                 // Redirect to the dashboard.
-                wp_redirect( home_url( '/dashboard.php' ) );
+                wp_redirect( home_url( '/dashboard/' ) );
                 exit;
             ?>
         <?php else : ?>

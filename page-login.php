@@ -15,19 +15,7 @@ get_header();
             <h1 class="login-title">AKCO Portal Login</h1>
 
             <form name="loginform" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
-                <p>
-                    <label for="department">Select Your Department</label>
-                    <select name="department" id="department" class="input">
-                        <option value="">---</option>
-                        <option value="administration_membership">Administration & Membership</option>
-                        <option value="finance">Finance</option>
-                        <option value="agriculture">Agriculture</option>
-                        <option value="media">Media</option>
-                        <option value="sports_talent">Sports & Talent</option>
-                        <option value="hr">HR</option>
-                        <option value="immigration">Immigration</option>
-                    </select>
-                </p>
+                
                 <p>
                     <label for="user_login">Username or Email Address</label>
                     <input type="text" name="log" id="user_login" class="input" value="" size="20" />

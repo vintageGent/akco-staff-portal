@@ -107,3 +107,30 @@ function akco_staff_portal_add_roles() {
     add_role( 'immigration', 'Immigration', get_role( 'subscriber' )->capabilities );
 }
 add_action( 'init', 'akco_staff_portal_add_roles' );
+
+/**
+ * Redirect users with custom roles to the dashboard after login.
+ */
+function akco_staff_portal_login_redirect( $redirect_to, $request, $user ) {
+    // Is there a user to check?
+    if ( isset( $user->roles ) && is_array( $user->roles ) ) {
+        // Check if the user has one of our custom roles
+        $custom_roles = array( 'administration_membership', 'finance', 'agriculture', 'media', 'sports_talent', 'hr', 'immigration' );
+        foreach ( $custom_roles as $role ) {
+            if ( in_array( $role, $user->roles ) ) {
+                return home_url( '/dashboard/' );
+            }
+        }
+    }
+    return $redirect_to;
+}
+add_filter( 'login_redirect', 'akco_staff_portal_login_redirect', 10, 3 );
+
+/**
+ * Redirect to custom login page after logout.
+ */
+function akco_staff_portal_logout_redirect() {
+    wp_redirect( home_url( '/portal-login/' ) );
+    exit();
+}
+add_action( 'wp_logout', 'akco_staff_portal_logout_redirect' );
