@@ -76,10 +76,34 @@ add_action( 'after_setup_theme', 'akco_staff_portal_setup' );
  */
 function akco_staff_portal_scripts() {
 	wp_enqueue_style( 'akco-staff-portal-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'akco-staff-portal-dashboard-style', get_template_directory_uri() . '/dashboard-style.css' );
+
+    if ( is_user_logged_in() ) {
+        $user = wp_get_current_user();
+        $role = ( array ) $user->roles;
+        $role = $role[0];
+
+        if ( $role === 'agriculture' ) {
+            wp_enqueue_style( 'akco-staff-portal-agriculture-style', get_template_directory_uri() . '/css/agriculture-style.css' );
+        }
+        // Add more else if statements for other departments here
+    }
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'akco_staff_portal_scripts' );
+
+/**
+ * Create custom user roles for departments.
+ */
+function akco_staff_portal_add_roles() {
+    add_role( 'administration_membership', 'Administration & Membership', get_role( 'subscriber' )->capabilities );
+    add_role( 'finance', 'Finance', get_role( 'subscriber' )->capabilities );
+    add_role( 'agriculture', 'Agriculture', get_role( 'subscriber' )->capabilities );
+    add_role( 'media', 'Media', get_role( 'subscriber' )->capabilities );
+    add_role( 'sports_talent', 'Sports & Talent', get_role( 'subscriber' )->capabilities );
+    add_role( 'hr', 'HR', get_role( 'subscriber' )->capabilities );
+    add_role( 'immigration', 'Immigration', get_role( 'subscriber' )->capabilities );
+}
+add_action( 'init', 'akco_staff_portal_add_roles' );

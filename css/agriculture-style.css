@@ -1,0 +1,18 @@
+/*
+ * Theme for the Agriculture Department
+ */
+
+body {
+    background-image: url('https://example.com/avocado-field-beehive.jpg'); /* Placeholder URL */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.dashboard-header h1, .widget h2 {
+    color: #6ab04c; /* A vibrant, earthy green */
+}
+
+.dashboard-widgets .widget {
+    border-left: 5px solid #badc58; /* A neon green accent */
+}
