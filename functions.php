@@ -134,3 +134,44 @@ function akco_staff_portal_logout_redirect() {
     exit();
 }
 add_action( 'wp_logout', 'akco_staff_portal_logout_redirect' );
+
+/**
+ * Redirect non-admin users away from the WordPress admin area.
+ */
+function akco_staff_portal_redirect_non_admin() {
+    if ( is_admin() && ! current_user_can( 'administrator' ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+        wp_redirect( home_url( '/dashboard/' ) );
+        exit;
+    }
+}
+add_action( 'admin_init', 'akco_staff_portal_redirect_non_admin' );
+
+/**
+ * Create custom post types for Projects and Announcements.
+ */
+function akco_staff_portal_create_post_types() {
+    // Projects
+    register_post_type( 'project', array(
+        'labels' => array(
+            'name' => __( 'Projects' ),
+            'singular_name' => __( 'Project' )
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'supports' => array( 'title', 'editor', 'thumbnail' ),
+        'rewrite' => array( 'slug' => 'projects' ),
+    ));
+
+    // Announcements
+    register_post_type( 'announcement', array(
+        'labels' => array(
+            'name' => __( 'Announcements' ),
+            'singular_name' => __( 'Announcement' )
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'supports' => array( 'title', 'editor' ),
+        'rewrite' => array( 'slug' => 'announcements' ),
+    ));
+}
+add_action( 'init', 'akco_staff_portal_create_post_types' );

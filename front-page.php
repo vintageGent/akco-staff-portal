@@ -30,10 +30,14 @@ get_header(); // Include header.php ?>
 
     <?php if ( is_user_logged_in() ) : ?>
         <?php
-            // Redirect to the dashboard.
-            wp_redirect( home_url( '/dashboard/' ) );
-            exit;
+            // User is logged in, show the dashboard link or content.
+            // For now, let's just show a welcome message and a link.
         ?>
+        <div class="akco-content-popup">
+            <h1 class="entry-title">Welcome Back, AKCO Volunteer!</h1>
+            <p>You are already logged in.</p>
+            <p><a href="<?php echo esc_url( home_url( '/dashboard/' ) ); ?>">Go to your Dashboard</a></p>
+        </div>
     <?php else : ?>
         <div class="akco-content-popup">
             <h1 class="entry-title">Welcome AKCO Volunteers</h1>
