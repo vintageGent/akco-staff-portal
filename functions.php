@@ -17,6 +17,8 @@ if ( ! function_exists( 'akco_staff_portal_setup' ) ) :
 	 * as indicating support for post thumbnails.
 	 */
 	function akco_staff_portal_setup() {
+
+		error_log( 'AKCO Staff Portal Theme Setup Function Fired!' ); // Debugging line
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
