@@ -139,8 +139,20 @@ add_action( 'wp_logout', 'akco_staff_portal_logout_redirect' );
  * Redirect non-admin users away from the WordPress admin area.
  */
 function akco_staff_portal_redirect_non_admin() {
+    // Get the URL of the dashboard page.
+    $dashboard_url = home_url( '/dashboard/' );
+
+    // Get the current URL the user is trying to access.
+    $current_url = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+    // If the user is already on the dashboard, do nothing to prevent a loop.
+    if ( trailingslashit( $current_url ) === trailingslashit( $dashboard_url ) ) {
+        return;
+    }
+
+    // If the user is in the admin area, is not an administrator, and it's not an AJAX request, redirect them.
     if ( is_admin() && ! current_user_can( 'administrator' ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
-        wp_redirect( home_url( '/dashboard/' ) );
+        wp_redirect( $dashboard_url );
         exit;
     }
 }
