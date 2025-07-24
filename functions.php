@@ -1,5 +1,5 @@
 <?php
-// Force theme file re-scan
+// Force theme file re-scan - New commit for fresh download
 /**
  * AKCO Staff Portal functions and definitions
  *
