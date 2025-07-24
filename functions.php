@@ -190,3 +190,66 @@ function akco_staff_portal_create_post_types() {
     ));
 }
 add_action( 'init', 'akco_staff_portal_create_post_types' );
+
+/**
+ * Create Dashboard page on theme activation.
+ */
+function akco_staff_portal_create_dashboard_page() {
+    error_log( 'akco_staff_portal_create_dashboard_page function called.' ); // Debugging
+    $dashboard_page_title = 'Dashboard';
+    $dashboard_page_content = 'Welcome to your dashboard!';
+    $dashboard_page_slug = 'dashboard';
+    $dashboard_template = 'template-dashboard.php'; // The custom template file
+
+    $dashboard_page = array(
+        'post_title'    => $dashboard_page_title,
+        'post_content'  => $dashboard_page_content,
+        'post_status'   => 'publish',
+        'post_type'     => 'page',
+        'post_name'     => $dashboard_page_slug,
+    );
+
+    // Check if the page already exists
+    $page_id = get_page_by_path( $dashboard_page_slug );
+    error_log( 'Page ID before check: ' . ( $page_id ? $page_id->ID : 'Not found' ) ); // Debugging
+
+    if ( ! $page_id ) {
+        error_log( 'Dashboard page not found, attempting to create.' ); // Debugging
+        // Create the page
+        $page_id = wp_insert_post( $dashboard_page );
+        if ( is_wp_error( $page_id ) ) {
+            error_log( 'Error creating dashboard page: ' . $page_id->get_error_message() ); // Debugging error
+        } else {
+            error_log( 'Dashboard page created with ID: ' . $page_id ); // Debugging success
+        }
+    } else {
+        $page_id = $page_id->ID;
+        error_log( 'Dashboard page already exists with ID: ' . $page_id ); // Debugging
+    }
+
+    // Assign the custom template
+    if ( $page_id && get_post_meta( $page_id, '_wp_page_template', true ) !== $dashboard_template ) {
+        error_log( 'Assigning template to dashboard page ID: ' . $page_id ); // Debugging
+        update_post_meta( $page_id, '_wp_page_template', $dashboard_template );
+        error_log( 'Template assigned.' ); // Debugging
+    } else {
+        error_log( 'Template already assigned or page_id is false.' ); // Debugging
+    }
+}
+add_action( 'after_setup_theme', 'akco_staff_portal_create_dashboard_page' );
+
+/**
+ * Delete Dashboard page on theme deactivation.
+ */
+function akco_staff_portal_delete_dashboard_page() {
+    error_log( 'akco_staff_portal_delete_dashboard_page function called.' ); // Debugging
+    $dashboard_page = get_page_by_path( 'dashboard' );
+    if ( $dashboard_page ) {
+        error_log( 'Deleting dashboard page with ID: ' . $dashboard_page->ID ); // Debugging
+        wp_delete_post( $dashboard_page->ID, true );
+        error_log( 'Dashboard page deleted.' ); // Debugging
+    } else {
+        error_log( 'Dashboard page not found for deletion.' ); // Debugging
+    }
+}
+register_deactivation_hook( __FILE__, 'akco_staff_portal_delete_dashboard_page' );
